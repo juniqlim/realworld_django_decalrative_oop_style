@@ -2,11 +2,6 @@ class ArticleListRepository:
     articles = []
     article_sequence = 0
 
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, 'instance'):
-            cls.instance = super(ArticleListRepository, cls, *args, **kwargs).__new__(cls, *args, **kwargs)
-        return cls.instance
-
     def create_id(self):
         self.article_sequence += 1
         return self.article_sequence
