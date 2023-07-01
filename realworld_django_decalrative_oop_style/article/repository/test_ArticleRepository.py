@@ -13,3 +13,6 @@ class TestArticleListRepository(TestCase):
         article_list_repository.save(Fixture.article())
         self.assertEqual(Fixture.article(), article_list_repository.find_by_id(1))
 
+
+if __name__ == '__main__':
+    TestCase.main()

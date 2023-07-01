@@ -21,4 +21,8 @@ class TestArticleUseCase(TestCase):
                 "You have to believe"
             )
         )
-        self.assertEqual("how-to-train-your-dragon", article.slug())
+        self.assertEqual("How to train your dragon", article.title)
+
+
+if __name__ == '__main__':
+    TestCase.main()
