@@ -13,6 +13,7 @@ class IndexView(APIView):
 
 urlpatterns = [
     path("article/", include("article.urls")),
+    path("article2/", include("article2.urls")),
     path('admin/', admin.site.urls),
     path('', IndexView.as_view()),
     path('articles', ArticleController.save, name='save'),

@@ -31,3 +31,17 @@ Content-Type: application/json
   }
 }
 
+###
+GET http://127.0.0.1:8000/article2/
+
+###
+POST http://127.0.0.1:8000/article2/
+Content-Type: application/json
+
+{
+  "article": {
+    "title": "Article 21",
+    "description": "Description 21",
+    "body": "Content 21"
+  }
+}
