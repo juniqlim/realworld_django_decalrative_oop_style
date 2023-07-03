@@ -22,3 +22,8 @@ def find_by_slug(slug):
 
 def find():
     return sorted(articles, key=lambda x: x.createdAt, reverse=True)[:5]
+
+
+def remove_all():
+    global articles
+    articles = []
