@@ -11,10 +11,7 @@ class TestArticle(TestCase):
         create = Article.objects.create(slug='slug', title='title', description='description', body='body')
         self.assertEqual(1, create.id)
 
-    def test_create(self):
+    def test_create_with_serializer(self):
         serializer = ArticleSerializer(
             Article.objects.create(slug='slug', title='title', description='description', body='body'))
-        self.assertEqual(1, serializer.data['id'])
-
-    def test(self):
-        print(datetime.now())
+        self.assertEqual('slug', serializer.data['slug'])
