@@ -4,8 +4,7 @@ from datetime import datetime
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Article, ArticleSerializer
-from .usecase.repository import save
+from .models import Article, ArticleSerializer, ArticleDjangoRepository
 from .usecase.usecase import create_article, Request
 
 
@@ -17,7 +16,7 @@ class ArticleAPI(APIView):
     def post(self, request):
         return Response(
             json.dumps(
-                {'article': create_article(save, Request(**request.data.get('article', {}))).__dict__},
+                {'article': create_article(ArticleDjangoRepository().save, Request(**request.data.get('article', {}))).__dict__},
                 default=serialize_datetime
             )
         )

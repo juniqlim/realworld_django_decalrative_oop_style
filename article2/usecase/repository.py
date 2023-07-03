@@ -1,8 +1,24 @@
 from article2.usecase.domain import ArticleData
-from article2.models import ArticleSerializer, Article
 
 
-def save(article_data):
-    return ArticleData(**ArticleSerializer(
-        Article.objects.create(slug=article_data.title.lower().replace(" ", "-"), title=article_data.title,
-                               description=article_data.description, body=article_data.body)).data)
+class ArticleRepository:
+    def save(self, article_data: ArticleData):
+        pass
+
+
+class ArticleListRepository(ArticleRepository):
+    articles = []
+    article_sequence = 0
+
+    def create_id(self):
+        self.article_sequence += 1
+        return self.article_sequence
+
+    def save(self, article):
+        self.articles.append(article)
+
+    def find_by_slug(self, slug):
+        for article in self.articles:
+            if article.slug == slug:
+                return article
+        raise Exception("Article not found")
