@@ -40,8 +40,8 @@ Content-Type: application/json
 
 {
   "article": {
-    "title": "Article 21",
-    "description": "Description 21",
-    "body": "Content 21"
+    "title": "Article 22",
+    "description": "Description 22",
+    "body": "Content 22"
   }
 }

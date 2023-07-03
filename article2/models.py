@@ -1,7 +1,7 @@
 from django.db import models
 from rest_framework.serializers import ModelSerializer
 
-from article2.usecase.domain import ArticleData
+from article2.usecase.usecase import ArticleData
 
 
 class Article(models.Model):
@@ -21,7 +21,7 @@ class ArticleSerializer(ModelSerializer):
 
 def save(article_data):
     return ArticleData(**ArticleSerializer(
-        Article.objects.create(slug=article_data.title.lower().replace(" ", "-"), title=article_data.title,
+        Article.objects.create(slug=article_data.slug, title=article_data.title,
                                description=article_data.description, body=article_data.body)).data)
 
 
