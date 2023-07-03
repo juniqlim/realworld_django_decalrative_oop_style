@@ -6,8 +6,7 @@ from article2.usecase.domain import ArticleData
 
 class TestArticleData(TestCase):
     def test(self):
-        article = fixture_article()
-        self.assertEqual('title-title', article.slug)
+        self.assertEqual('title-title', fixture_article().slug)
 
 
 def fixture_article():

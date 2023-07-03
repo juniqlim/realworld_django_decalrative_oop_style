@@ -9,8 +9,8 @@ class TestArticleListRepository(TestCase):
         self.assertEqual(1, ArticleListRepository().create_id())
 
     def test_save(self):
-        article = fixture_article()
         article_list_repository = ArticleListRepository()
+        article = fixture_article()
 
         article_list_repository.save(article)
         self.assertEqual(article, article_list_repository.find_by_slug('title-title'))
