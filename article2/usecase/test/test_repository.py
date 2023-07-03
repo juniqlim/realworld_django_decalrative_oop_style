@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from article2.usecase.repository import ArticleListRepository
-from article2.usecase.test_domain import fixture_article
+from article2.usecase.test.test_domain import fixture_article
 
 
 class TestArticleListRepository(TestCase):
