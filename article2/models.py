@@ -2,7 +2,6 @@ from django.db import models
 from rest_framework.serializers import ModelSerializer
 
 from article2.usecase.domain import ArticleData
-from article2.usecase.repository import ArticleRepository
 
 
 class Article(models.Model):
@@ -20,8 +19,11 @@ class ArticleSerializer(ModelSerializer):
         fields = ['slug', 'title', 'description', 'body', 'createdAt', 'updatedAt']
 
 
-class ArticleDjangoRepository(ArticleRepository):
-    def save(self, article_data):
-        return ArticleData(**ArticleSerializer(
-            Article.objects.create(slug=article_data.title.lower().replace(" ", "-"), title=article_data.title,
-                                   description=article_data.description, body=article_data.body)).data)
+def save(article_data):
+    return ArticleData(**ArticleSerializer(
+        Article.objects.create(slug=article_data.title.lower().replace(" ", "-"), title=article_data.title,
+                               description=article_data.description, body=article_data.body)).data)
+
+
+def find():
+    return [ArticleData(**ArticleSerializer(article).data) for article in Article.objects.order_by("-createdAt")[:5]]

@@ -10,6 +10,10 @@ def create_article(save, request):
                             updatedAt=datetime.now()))
 
 
+def find_article(find):
+    return find()
+
+
 @dataclass
 class Request:
     title: str

@@ -4,20 +4,23 @@ from datetime import datetime
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from realworld_django_decalrative_oop_style.article.singleton import Singleton
-from .models import Article, ArticleSerializer, ArticleDjangoRepository
-from .usecase.usecase import create_article, Request
+from .models import save, find
+from .usecase.usecase import create_article, Request, find_article
 
 
 class ArticleAPI(APIView):
     def get(self, request):
-        latest_list = Article.objects.order_by("-createdAt")[:5]
-        return Response(ArticleSerializer(latest_list, many=True).data)
+        return Response(
+            json.dumps(
+                {'articles': [article.__dict__ for article in find_article(find)]},
+                default=serialize_datetime
+            )
+        )
 
     def post(self, request):
         return Response(
             json.dumps(
-                {'article': create_article(Singleton(ArticleDjangoRepository).save, Request(**request.data.get('article', {}))).__dict__},
+                {'article': create_article(save, Request(**request.data.get('article', {}))).__dict__},
                 default=serialize_datetime
             )
         )
