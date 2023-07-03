@@ -2,7 +2,7 @@ from article2.usecase.domain import ArticleData
 
 
 class ArticleRepository:
-    def save(self, article_data: ArticleData):
+    def save(self, article_data: ArticleData) -> ArticleData:
         pass
 
 
@@ -16,6 +16,7 @@ class ArticleListRepository(ArticleRepository):
 
     def save(self, article):
         self.articles.append(article)
+        return article
 
     def find_by_slug(self, slug):
         for article in self.articles:
